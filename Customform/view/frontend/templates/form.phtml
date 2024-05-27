@@ -1,0 +1,100 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+// phpcs:disable Generic.Files.LineLength.TooLong
+
+//$viewModel = $block->getViewModel();
+?>
+<form class="form contact"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="custom-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Write Us')) ?></span></legend><br />
+        <div class="field note no-label">
+            <?= $block->escapeHtml(__('Jot us a note and we’ll get back to you as quickly as possible.')) ?>
+        </div>
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+            <div class="control">
+                <input name="name"
+                       id="name"
+                       title="<?= $block->escapeHtmlAttr(__('Name')) ?>"
+                       value=""
+                       class="input-text"
+                       type="text"
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field course">
+            <label class="label" for="course"><span><?= $block->escapeHtml(__('Course')) ?></span></label>
+            <div class="control">
+                <select name="course" data-validate="{required:true}" title="<?= $block->escapeHtmlAttr(__('Course')) ?>">
+					<option value="1">BCA</option>
+					<option value="2">BBA</option>
+					<option value="3">MCA</option>
+					<option value="4">MBA</option>
+				</select>
+            </div>
+        </div>
+        <div class="field content required">
+            <label class="label" for="content">
+                <span><?= $block->escapeHtml(__('Message')) ?></span>
+            </label>
+            <div class="control">
+                <textarea name="content"
+                          id="content"
+                          title="<?= $block->escapeHtmlAttr(__('Message')) ?>"
+                          class="input-text"
+                          cols="5"
+                          rows="3"
+                          data-validate="{required:true}"
+                ></textarea>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+	<div id="custom-image"><img src="<?= $block->getViewFileUrl('Nxtech_Customform::images/abc.jpg'); ?>"></div>
+</form>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "custom-form"
+            }
+        }
+    }
+</script>
+
+
+<?php 
+	echo $fileName = "http://magento246.local/pub/media/wysiwyg/abc.jpg";
+	
+	$degrees = 1350;
+		
+	$source = imagecreatefromjpeg($fileName);
+
+	$rotate = imagerotate($source, $degrees, 0);
+
+	$imageData = imagejpeg($rotate, "/var/www/html/magento246/pub/media/wysiwyg/test/update-abc.jpg");
+	
+	print_r($imageData);
+?>
+	<!-- <img src="<?php //echo $rotate; ?>"> -->
+<?php
+	//imagejpeg($rotate, "http://magento246.local/pub/media/wysiwyg/update-abc.jpg");
+
+	print_r('Image saved successfully.');
+?>
